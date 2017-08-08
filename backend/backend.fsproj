@@ -28,17 +28,12 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.*" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.*" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.*" />
-    <PackageReferece  Include="FSharp.Data" Version="2.3.*" />
     <PackageReference Include="Giraffe" Version="0.1.0-*" />
     <PackageReference Include="Giraffe.Razor" Version="0.1.0-*" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Watch Include="**\*.cshtml" Exclude="bin\**\*" />
   </ItemGroup>
 
   <ItemGroup>
