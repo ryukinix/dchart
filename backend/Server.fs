@@ -23,7 +23,8 @@ let webApp =
     choose [
         GET >=>
             choose [
-                route "/" >=> razorHtmlView "Index" { Text = "Hello world, from Giraffe!" }
+                route "/" >=> redirectTo true "/index.html"
+                route "/test" >=> razorHtmlView "Index" { Text = "Hello world, from Giraffe!" }
                 route "/silver" >=> warbler (fun _ -> Assets.Silver.Get() |> text)
                 route "/gold" >=> warbler (fun _ -> Assets.Gold.Get() |> text)
             ]
