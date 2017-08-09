@@ -26,7 +26,7 @@ module Downloader =
             use reader = new IO.StreamReader(stream)
             return reader.ReadToEnd().Replace("null", "-1") // this is bad¹
         }
-    // the -1 avoid future problems on parsing the data by static types
+    // the -1 avoid future problems on parsing the numeric data by static types
     // on chart creation
 
     /// download [synchronized]
