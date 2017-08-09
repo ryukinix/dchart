@@ -1,19 +1,16 @@
 ﻿// Learn more about F# at http://fsharp.org
 // See the 'F# Tutorial' project for more help.
 
-/// This namespace will define all the stuff about caching data and handling it.
+/// This namespace will define all the symbols about caching data and handling it.
 namespace Backend.Data
-
-/// TODO: Avoid replication, write type Asset to abstract Silver/Gold operations [DONE]
-
 
 open System
 open System.Net
 open System.IO
 open FSharp.Data
-open Microsoft.FSharp.Control.CommonExtensions // get AsyncGetResponse
+open Microsoft.FSharp.Control.CommonExtensions // definition of AsyncGetResponse
 
-/// Downloader module is a simple handler to download files
+/// Downloader module is a simple handler to download and save files
 module Downloader =
     let Interval = 60 * 1000 // 1 minute in milliseconds to download on update
 
@@ -29,8 +26,8 @@ module Downloader =
             use reader = new IO.StreamReader(stream)
             return reader.ReadToEnd().Replace("null", "-1") // this is bad¹
         }
-    /// the -1 avoid future problems on parsing the data by static types
-    /// on chart creation
+    // the -1 avoid future problems on parsing the data by static types
+    // on chart creation
 
     /// download [synchronized]
     let fetchUrl (url: string) : string =
