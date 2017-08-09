@@ -1,12 +1,16 @@
 <Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <DebugType>portable</DebugType>
     <AssemblyName>dchart</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>dchart</PackageId>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
+  </PropertyGroup>
+  <!-- Hotfix to enable TypeProviders on .NET Core !-->
+  <PropertyGroup>
+    <FscToolPath>../tools/</FscToolPath>
+    <FscToolExe>fsharpc.exe</FscToolExe>
   </PropertyGroup>
   <!-- References of the Standard Library !-->
   <!-- External Packages !-->
