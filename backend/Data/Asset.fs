@@ -7,7 +7,9 @@ type Asset =
       Filename: string}
 
     member this.Filepath() = Path.Combine(Downloader.path, this.Filename)
-    member this.Get() = File.ReadAllText(this.Filepath())
+    member this.Get() = match File.Exists(this.Filepath()) with
+                        | false -> """{"errors": { "message": "No such file available"}}"""
+                        | true -> File.ReadAllText(this.Filepath())
     member this.Save() = Downloader.save this.Url this.Filename
     member this.Update() = Downloader.update this.Save  // async
 

@@ -38,10 +38,15 @@ module Downloader =
         |> Async.RunSynchronously
 
     /// Save a file on temp folder and return its path (synchronized)
-    /// [SIDE-EFFECTS] : save file on disk, replace null by -1
+    /// [SideEffects] : save file on disk, replace null by -1
+    /// [ErrorHandler] : If on save get exception, likewise HTTP ERROR 429
+    /// because too many requests, don't save empty file and treat exception
     let save (url: string ) (filename: string) =
         let filePath = Path.Combine(path, filename)
-        File.WriteAllText(filePath, fetchUrl(url))
+        try
+            File.WriteAllText(filePath, fetchUrl(url))
+        with
+            | :? System.Net.WebException as ex -> printfn "Exception on saving %s: %s" filename ex.Message
 
     /// Update a routine as async at each `Interval`
     let update (routine: unit -> unit) =
