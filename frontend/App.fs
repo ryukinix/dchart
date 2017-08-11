@@ -1,19 +1,36 @@
-module FrontEnd
+namespace Frontend.App
 
+open System
 open Fable.Core
-open Fable.Core.JsInterop
 open Fable.Import
+open Fable.Core.JsInterop
+open Frontend.Charting
+open Frontend.Types
 
-let init() =
-    let canvas = Browser.document.getElementsByTagName_canvas().[0]
-    canvas.width <- 1000.
-    canvas.height <- 800.
-    let ctx = canvas.getContext_2d()
-    // The (!^) operator checks and casts a value to an Erased Union type
-    // See http://fable.io/docs/interacting.html#Erase-attribute
-    ctx.fillStyle <- !^"rgb(200,0,0)"
-    ctx.fillRect (10., 10., 55., 50.)
-    ctx.fillStyle <- !^"rgba(0, 0, 200, 0.5)"
-    ctx.fillRect (30., 30., 55., 50.)
+module ChartingTest =
 
-init()
+    let random = Random()
+
+    let randomValues() =
+        [|1 .. 10|] |> Array.map (fun i ->
+        {
+            x = DateTime(2014, i, 1)
+            y = float (random.Next() / 100000)
+            size = float (random.Next())
+        })
+
+    let drawChart() =
+        let series = [|
+                {
+                    key = "Series 1"
+                    values = randomValues()
+                };
+                {
+                    key = "Series 2"
+                    values = randomValues()
+                }
+            |]
+
+        Charting.drawDateScatter series "#chart" "X axis" "Y axis"
+
+    drawChart()
