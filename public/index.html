@@ -6,10 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
   <link rel="shortcut icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+  <link href="lib/nvd3/nv.d3.min.css" rel="stylesheet" />
+  <script src="lib/d3/d3.min.js" charset="utf-8"></script>
+  <script src="lib/nvd3/nv.d3.min.js"></script>
+  <style>
+    div.title {
+      background-color: black;
+      color: white;
+      padding: 5px;
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
-  <h1 align="center">Dynamic Charting</h1>
-  <canvas align="center" id="canvas" width="1000" height="800"></canvas>
+  <div class="title">
+    <h1 align="center">Dynamic Charting</h1>
+  </div>
+  <!-- the charts -->
+  <div>
+    <svg id="chart"></svg>
+  </div>
   <script src="bundle.js"></script>
 </body>
 </html>
