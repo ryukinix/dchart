@@ -1,9 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "frontend", "frontend\frontend.fsproj", "{E5DEFC96-37CF-4844-9C9E-CFA0A9A8AED3}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Frontend", "src\Frontend\Frontend.fsproj", "{E5DEFC96-37CF-4844-9C9E-CFA0A9A8AED3}"
 EndProject
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "backend", "backend\backend.fsproj", "{10999915-5C1F-4740-BB54-2D75B4CBDECB}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Backend", "src\Backend\Backend.fsproj", "{10999915-5C1F-4740-BB54-2D75B4CBDECB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
