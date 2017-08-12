@@ -10,20 +10,16 @@ module Frontend.Types
 
 open System
 
-type Data =
-    { Datetime: System.DateTime
-      Prices: float}
-
-type MetalData =
-    {Name: string
-     Currencies: string []
-     UpdateAt: System.DateTime
-     mutable data: Data [] }
-
-
-type Value = {
-    x: int
+type DatePrice = { 
+    x: DateTime
     y: float
+}
+
+type MetalData = {
+    Name: string
+    Currencies: string []
+    UpdateAt: System.DateTime
+    mutable data: DatePrice [] 
 }
 
 type DateScatterValue = {

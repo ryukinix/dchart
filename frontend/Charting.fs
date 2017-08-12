@@ -31,32 +31,23 @@ type Chart() =
 type LineChart() = inherit Chart()
         with member __.useInteractiveGuideline (value:bool): Chart = failwith "JSOnly"
 
-[<AbstractClass>]
-type ScatterChart() = inherit Chart()
-    with member __.pointRange(value: double array): ScatterChart = failwith "JSOnly"
-
-
 type models =
     abstract lineChart: unit -> LineChart
-    abstract scatterChart: unit -> ScatterChart
 
 module nv =
     [<Erase>]
     let models: models = failwith "JS only"
 
 module Charting =
-
-    let tuplesToPoints (data: (float*float) list): Value array =
-            data |> List.map (fun (x,y) ->
-                {
-                    Value.x = int x
-                    Value.y = y
-                }
-            ) |> Array.ofList
-
+         
     let prepareLineChart xLabel yLabel =
-        let chart = nv.models.lineChart().useInteractiveGuideline(true).showLegend(true).showXAxis(true)
-        chart.xAxis.axisLabel(xLabel).tickFormat(D3.Globals.format(",.1f")) |> ignore
+        let colors = D3.Scale.Globals.category10()
+        let chart = nv.models.lineChart().useInteractiveGuideline(true).showLegend(true).showXAxis(true).color(colors.range())
+        let timeFormat = D3.Time.Globals.format("%x")
+        chart.xAxis.axisLabel(xLabel).tickFormat(fun x -> 
+            let dateValue = DateUtils.fromTicks(x :?> int)
+            timeFormat.Invoke(dateValue)
+        ) |> ignore
         chart.yAxis.axisLabel(yLabel).tickFormat(D3.Globals.format(",.1f")) |> ignore
         chart
 
@@ -72,17 +63,6 @@ module Charting =
         chartElement.datum(data).call(chart) |> ignore
 
 
-    let drawLineChart (data: Series<Value> array) (chartSelector:string) xLabel yLabel =
+    let drawLineChart (data: Series<DatePrice> array) (chartSelector:string) xLabel yLabel =
         let chart = prepareLineChart xLabel yLabel
-        drawChart chart data chartSelector
-
-    let drawDateScatter (data: Series<DateScatterValue> array) (chartSelector:string) xLabel yLabel =
-        let colors = D3.Scale.Globals.category10()
-        let chart = nv.models.scatterChart().pointRange([|10.0;800.0|]).showLegend(true).showXAxis(true).color(colors.range())
-        let timeFormat = D3.Time.Globals.format("%x")
-        chart.yAxis.axisLabel(yLabel) |> ignore
-        chart.xAxis.tickFormat(fun x ->
-            let dateValue = DateUtils.fromTicks(x :?> int)
-            timeFormat.Invoke(dateValue)
-        ).axisLabel(xLabel) |> ignore
         drawChart chart data chartSelector
