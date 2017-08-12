@@ -18,13 +18,16 @@ open Backend.Data
 // Web app
 // ---------------------------------
 
+let JsonAsset (asset: Asset) =
+   json >=> warbler (fun _ -> asset.Get() |> text)
+
 let webApp =
     choose [
         GET >=>
             choose [
                 route "/" >=> redirectTo true "/index.html"
-                route "/silver" >=> warbler (fun _ -> Assets.Silver.Get() |> text)
-                route "/gold" >=> warbler (fun _ -> Assets.Gold.Get() |> text)
+                route "/silver" >=> JsonAsset(Assets.Silver)
+                route "/gold" >=> JsonAsset(Assets.Gold)
             ]
         setStatusCode 404 >=> text "Not Found" ]
 
