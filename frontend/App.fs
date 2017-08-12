@@ -11,26 +11,25 @@ module ChartingTest =
 
     let random = Random()
 
-    let randomValues() =
+    let randomValues(): DatePrice [] =
         [|1 .. 10|] |> Array.map (fun i ->
         {
-            x = DateTime(2014, i, 1)
+            x = DateTime(2014, 1, -i)
             y = float (random.Next() / 100000)
-            size = float (random.Next())
         })
 
     let drawChart() =
         let series = [|
                 {
-                    key = "Series 1"
+                    key = "Silver"
                     values = randomValues()
                 };
                 {
-                    key = "Series 2"
+                    key = "Gold"
                     values = randomValues()
                 }
             |]
 
-        Charting.drawDateScatter series "#chart" "X axis" "Y axis"
+        Charting.drawLineChart series "#chart" "Date" "Price"
 
     drawChart()
