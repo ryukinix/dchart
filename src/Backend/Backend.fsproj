@@ -5,7 +5,7 @@
     <AssemblyName>dchart</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>dchart</PackageId>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion>1.1.2</RuntimeFrameworkVersion>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
   <!-- References of the Standard Library !-->
@@ -22,8 +22,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.*" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.*" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.*" />
-    <PackageReference Include="Giraffe" Version="0.1.0-*" />
-    <PackageReference Include="Giraffe.Razor" Version="0.1.0-*" />
+    <PackageReference Include="Giraffe" Version="0.1.0-alpha025" />
+    <PackageReference Include="Giraffe.Razor" Version="0.1.0-alpha001" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
