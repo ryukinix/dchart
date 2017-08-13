@@ -35,9 +35,9 @@ let webApp =
 // Error handler
 // ---------------------------------
 
-let errorHandler (ex : Exception) (logger : ILogger) (ctx : HttpContext) =
+let errorHandler (ex : Exception) (logger : ILogger) (next: HttpFunc) (ctx : HttpContext) =
     logger.LogError(EventId(0), ex, "An unhandled exception has occurred while executing the request.")
-    ctx |> (clearResponse >=> setStatusCode 500 >=> text ex.Message)
+    (clearResponse >=> setStatusCode 500 >=> text ex.Message) next ctx
 
 // ---------------------------------
 // Config and Main
@@ -57,16 +57,17 @@ let configureServices (services : IServiceCollection) =
 let configureLogging (loggerFactory : ILoggerFactory) =
     loggerFactory.AddConsole(LogLevel.Error).AddDebug() |> ignore
 
+/// initial assets download
 let dataFeeding () =
-    // initial assets download
+    
     printfn "Downloading initial data of %s" Assets.Silver.Filename
     Assets.Silver.Save()
     printfn "Downloading initial data of %s" Assets.Gold.Filename
     Assets.Gold.Save()
 
-    [Assets.Silver.Update(); Assets.Gold.Update()]
-    |> List.iter Async.StartImmediate
-    |> ignore
+    // [Assets.Silver.Update(); Assets.Gold.Update()]
+    // |> List.iter Async.StartImmediate
+    // |> ignore
 
 
 [<EntryPoint>]
