@@ -1,7 +1,4 @@
-﻿// Learn more about F# at http://fsharp.org
-// See the 'F# Tutorial' project for more help.
-
-/// This namespace will define all the symbols about caching data and handling it.
+﻿/// This namespace will define all the symbols about caching data and handling it.
 namespace Backend.Data
 
 open System

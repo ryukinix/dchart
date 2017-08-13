@@ -13,7 +13,7 @@ type Asset =
     member this.Save() = Downloader.save this.Url this.Filename
     member this.Update() = Downloader.update this.Save  // async
 
-
+/// The assets definition to be downloaded, updated and served.
 module Assets =
     let Silver =
         {Url = "https://www.quandl.com/api/v1/datasets/LBMA/SILVER.json"
