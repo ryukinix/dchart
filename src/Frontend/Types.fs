@@ -15,20 +15,44 @@ type DatePrice = {
     y: float
 }
 
-type MetalData = {
-    Name: string
-    Currencies: string []
-    UpdateAt: System.DateTime
-    mutable data: DatePrice [] 
+type PriceData = {
+    Date: DateTime
+    Prices: float array
 }
 
-type DateScatterValue = {
-    x: DateTime
-    y: float
-    size: float
+/// When /silver or /gold o served cannot GET it
+/// the json output should be {errors: {message: "error-message"}}
+type Error = {Message: string}
+
+type MetalData = {
+    Errors: Error
+    Id: int
+    SourceName: string
+    SourceCode: string
+    Code: string
+    Name: string
+    UrlizeName: string
+    DisplayUrl: string
+    Description: string
+    UpdateAt: DateTime
+    Frequency: string
+    FromDate: DateTime
+    ToDate: DateTime
+    ColumnNames: string array
+    Premium: bool
+    Data: PriceData array
+    Type: string
 }
+
 
 type Series<'a> = {
     key: string
     values: 'a array
 }
+
+type Currency = int
+
+/// index of columns currencies
+let USD:Currency = 0
+let GBG:Currency = 1
+let EUR:Currency = 2

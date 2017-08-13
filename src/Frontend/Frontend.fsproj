@@ -5,7 +5,6 @@
   <ItemGroup>
       <Compile Include="Fable.Import.D3.fs" />
       <Compile Include="Types.fs" />
-      <Compile Include="Client.fs" />
       <Compile Include="Charting.fs" />
       <Compile Include="App.fs" />
   </ItemGroup>
