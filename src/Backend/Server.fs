@@ -19,7 +19,7 @@ open Backend.Data
 // ---------------------------------
 
 let JsonAsset (asset: Asset) =
-   json >=> warbler (fun _ -> asset.Get() |> text)
+   warbler (fun _ -> asset.Get() |> json)
 
 let webApp =
     choose [
