@@ -1,7 +1,7 @@
 # Description
 
-A simple dynamic charting project to fetch assets on Backend and render graphics
-with d3 on Frontend. Use Giraffe on Backend and Fable on Frontend. Full F#
+A simple dynamic charting project to fetch specific assets on Backend and render
+graphics with d3 on Frontend. Using Giraffe on Backend and Fable on Frontend. Full F#
 web application.
 
 ## Architecture
@@ -9,10 +9,15 @@ web application.
 ![example](example.png)
 
 The project was develop to save the assets on server using Giraffe and provide
-the assets on the GET routes /silver and /gold.
+the assets on the GET routes /silver and /gold. Before initialize the Giraffe server, a
+synchronous request is done to save locally SILVER.json and GOLD.json on `/tmp` folder.
+After that, two asynchronous task are initiated to download each file after 1 minute.
+So then the server giraffe is enable. This ensure that when /silver and /gold will
+be called at least one version of SILVER.json and GOLD.json exists on the server.
 
 The frontend was designed to use Fable for transpiling F# |> JS and
-charting the graphics using Line Chart by binding the libs of d3.js.
+charting the graphics using Line Chart by binding the libs of d3.js and nvd3.js.
+Partially, some binds I got from an external repository: [FableCharting](https://github.com/hoonzis/FabledCharting)
 
 ## Requirements
 
@@ -21,7 +26,7 @@ charting the graphics using Line Chart by binding the libs of d3.js.
 * [yarn](https://yarnpkg.com)
 * [Giraffe](https://github.com/dustinmoris/Giraffe)
 * [Fable](https://github.com/fable-compiler/Fable)
-* [Mono](http://www.mono-project.com/download/) (for build)
+* [Mono](http://www.mono-project.com/download/) (for build: `msbuild`)
 
 ## Build
 
