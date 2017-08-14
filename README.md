@@ -4,6 +4,16 @@ A simple dynamic charting project to fetch assets on Backend and render graphics
 with d3 on Frontend. Use Giraffe on Backend and Fable on Frontend. Full F#
 web application.
 
+## Architecture
+
+![example](example.png)
+
+The project was develop to save the assets on server using Giraffe and provide
+the assets on the GET routes /silver and /gold.
+
+The frontend was designed to use Fable for transpiling F# |> JS and
+charting the graphics using Line Chart by binding the libs of d3.js.
+
 ## Requirements
 
 * [dotnet SDK](https://www.microsoft.com/net/download/core) 1.0.4 and runtime
@@ -12,7 +22,6 @@ web application.
 * [Giraffe](https://github.com/dustinmoris/Giraffe)
 * [Fable](https://github.com/fable-compiler/Fable)
 * [Mono](http://www.mono-project.com/download/) (for build)
-
 
 ## Build
 
