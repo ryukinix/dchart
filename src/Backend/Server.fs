@@ -59,15 +59,14 @@ let configureLogging (loggerFactory : ILoggerFactory) =
 
 /// initial assets download
 let dataFeeding () =
-    
     printfn "Downloading initial data of %s" Assets.Silver.Filename
     Assets.Silver.Save()
     printfn "Downloading initial data of %s" Assets.Gold.Filename
     Assets.Gold.Save()
 
-    // [Assets.Silver.Update(); Assets.Gold.Update()]
-    // |> List.iter Async.StartImmediate
-    // |> ignore
+    [Assets.Silver.Update(); Assets.Gold.Update()]
+    |> List.iter Async.StartImmediate
+    |> ignore
 
 
 [<EntryPoint>]
