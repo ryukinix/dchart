@@ -1,0 +1,15 @@
+
+[Unit]
+Description=Dynamic Charting using Giraffe and .NET Core
+
+[Service]
+WorkingDirectory=/home/lerax/projects/dchart/src/Backend/bin/Debug/netcoreapp1.1
+ExecStart=/usr/bin/dotnet /home/lerax/projects/dchart/src/Backend/bin/Debug/netcoreapp1.1/dchart.dll
+Restart=always
+RestartSec=10  # Restart service after 10 seconds if dotnet service crashes
+SyslogIdentifier=dotnet-example
+User=lerax
+Environment=ASPNETCORE_ENVIRONMENT=Production 
+
+[Install]
+WantedBy=multi-user.target
